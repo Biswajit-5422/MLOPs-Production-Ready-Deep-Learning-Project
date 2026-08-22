@@ -10,3 +10,13 @@ LEARNING_RATE: 0.01
 # Best result achieved with these parameters:
 # loss: 0.016526173800230026
 # accuracy: 0.9901960492134094
+#
+# Other configs tried (EPOCHS, LEARNING_RATE -> loss, accuracy):
+#   10, 0.01    -> 0.0165, 0.9902  (selected above; rerun confirmed: 0.0210, 0.9902)
+#   15, 0.01    -> 0.4923, 0.9118
+#   10, 0.001   -> 0.0814, 1.0000  (rerun of same config: 0.1716, 0.8627)
+#   10, 0.0001  -> 0.4353, 0.9216
+#
+# Note: training is not seeded, and the validation set is small (68 images),
+# so repeat runs of the same config show meaningful variance (see 10/0.001
+# above). Treat single-run comparisons as directional, not conclusive.
