@@ -1,0 +1,14 @@
+.git
+.github
+.dvc/cache
+.dvc/tmp
+artifacts
+research
+MLOps_Tool_Demo
+logs
+mlruns
+.vscode
+__pycache__
+*.pyc
+*.pyo
+.env
