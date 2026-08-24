@@ -1,8 +1,5 @@
 
-# MLOPs-Production-Ready-Deep-Learning-Project
-
-
-
+# MLOps Pipeline for Chest CT-Scan Cancer Classification
 
 ## Workflows
 
@@ -33,6 +30,16 @@ pip install -r requirements.txt
 python app.py
 ```
 
+## Testing & linting
+
+```bash
+pip install -r requirements-dev.txt
+flake8 src tests
+pytest -q
+```
+
+`tests/` covers `cnnClassifier.utils.common` and `ConfigurationManager` (config/params parsing, directory creation, JSON round-trips, base64 image encode/decode) — the parts of the pipeline that don't require a downloaded dataset or a trained model to exercise. These same two commands are what the `integration` job in `.github/workflows/main.yaml` runs on every push.
+
 ## Git commands
 
 ```bash
@@ -52,6 +59,13 @@ git push origin main
 
 
 ## AWS CI/CD Deployment with GitHub Actions
+
+Every push to `main` runs `.github/workflows/main.yaml`, which has three jobs:
+1. **Continuous Integration** — installs `requirements-dev.txt` and runs `flake8 src tests` and `pytest -q` (see [Testing & linting](#testing--linting)).
+2. **Continuous Delivery** — builds the Docker image and pushes it to ECR.
+3. **Continuous Deployment** — (self-hosted runner only, see steps below) pulls and runs the image on EC2.
+
+The deployment steps below (2–7) are only needed if you want the CD job to actually land on an EC2 instance; the CI job runs regardless.
 
 ### 1. Create an IAM user for deployment
 

@@ -3,10 +3,7 @@ from cnnClassifier.components.model_trainer import Training
 from cnnClassifier import logger
 
 
-
-
 STAGE_NAME = "Training"
-
 
 
 class ModelTrainingPipeline:
@@ -22,10 +19,9 @@ class ModelTrainingPipeline:
         training.train()
 
 
-
 if __name__ == '__main__':
     try:
-        logger.info(f"*******************")
+        logger.info("*******************")
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = ModelTrainingPipeline()
         obj.main()
@@ -33,4 +29,3 @@ if __name__ == '__main__':
     except Exception as e:
         logger.exception(e)
         raise e
-        

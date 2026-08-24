@@ -3,8 +3,6 @@ from cnnClassifier.components.evaluation import Evaluation
 from cnnClassifier import logger
 
 
-
-
 STAGE_NAME = "Evaluation stage"
 
 
@@ -23,7 +21,7 @@ class EvaluationPipeline:
 
 if __name__ == '__main__':
     try:
-        logger.info(f"*******************")
+        logger.info("*******************")
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
         obj = EvaluationPipeline()
         obj.main()
@@ -31,4 +29,3 @@ if __name__ == '__main__':
     except Exception as e:
         logger.exception(e)
         raise e
-            

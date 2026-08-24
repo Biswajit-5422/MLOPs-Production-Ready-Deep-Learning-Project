@@ -11,7 +11,6 @@ from typing import Any
 import base64
 
 
-
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
@@ -35,7 +34,6 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise ValueError("yaml file is empty")
     except Exception as e:
         raise e
-    
 
 
 @ensure_annotations
@@ -64,8 +62,6 @@ def save_json(path: Path, data: dict):
         json.dump(data, f, indent=4)
 
     logger.info(f"json file saved at: {path}")
-
-
 
 
 @ensure_annotations
@@ -110,6 +106,7 @@ def load_bin(path: Path) -> Any:
     data = joblib.load(path)
     logger.info(f"binary file loaded from: {path}")
     return data
+
 
 @ensure_annotations
 def get_size(path: Path) -> str:

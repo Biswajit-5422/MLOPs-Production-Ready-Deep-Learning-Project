@@ -19,11 +19,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: Install test dependencies
+        run: pip install -r requirements-dev.txt
+
       - name: Lint code
-        run: echo "Linting repository"
+        run: flake8 src tests
 
       - name: Run unit tests
-        run: echo "Running unit tests"
+        run: pytest -q
 
   build-and-push-ecr-image:
     name: Continuous Delivery
