@@ -11,6 +11,16 @@ class DataIngestionConfig:
 
 
 @dataclass(frozen=True)
+class DataValidationConfig:
+    root_dir: Path
+    data_dir: Path
+    status_file: Path
+    report_file: Path
+    allowed_extensions: tuple
+    max_imbalance_ratio: float
+
+
+@dataclass(frozen=True)
 class PrepareBaseModelConfig:
     root_dir: Path
     base_model_path: Path
@@ -38,6 +48,7 @@ class TrainingConfig:
 class EvaluationConfig:
     path_of_model: Path
     training_data: Path
+    eval_output_dir: Path
     all_params: dict
     mlflow_uri: str
     params_image_size: list

@@ -8,10 +8,25 @@ stages:
       - artifacts/data_ingestion/Chest-CT-Scan-data
 
 
-  prepare_base_model:
-    cmd: python src/cnnClassifier/pipeline/stage_02_prepare_base_model.py
+  data_validation:
+    cmd: python src/cnnClassifier/pipeline/stage_02_data_validation.py
     deps:
-      - src/cnnClassifier/pipeline/stage_02_prepare_base_model.py
+      - src/cnnClassifier/pipeline/stage_02_data_validation.py
+      - config/config.yaml
+      - artifacts/data_ingestion/Chest-CT-Scan-data
+    params:
+      - MAX_IMBALANCE_RATIO
+    outs:
+      - artifacts/data_validation/status.txt
+    metrics:
+      - artifacts/data_validation/validation_report.json:
+          cache: false
+
+
+  prepare_base_model:
+    cmd: python src/cnnClassifier/pipeline/stage_03_prepare_base_model.py
+    deps:
+      - src/cnnClassifier/pipeline/stage_03_prepare_base_model.py
       - config/config.yaml
     params:
       - IMAGE_SIZE
@@ -25,11 +40,12 @@ stages:
 
 
   training:
-    cmd: python src/cnnClassifier/pipeline/stage_03_model_trainer.py
+    cmd: python src/cnnClassifier/pipeline/stage_04_model_trainer.py
     deps:
-      - src/cnnClassifier/pipeline/stage_03_model_trainer.py
+      - src/cnnClassifier/pipeline/stage_04_model_trainer.py
       - config/config.yaml
       - artifacts/data_ingestion/Chest-CT-Scan-data
+      - artifacts/data_validation/status.txt
       - artifacts/prepare_base_model
     params:
       - IMAGE_SIZE
@@ -40,12 +56,11 @@ stages:
       - artifacts/training/model.h5
 
 
-  
 
   evaluation:
-    cmd: python src/cnnClassifier/pipeline/stage_04_evaluation.py
+    cmd: python src/cnnClassifier/pipeline/stage_05_evaluation.py
     deps:
-      - src/cnnClassifier/pipeline/stage_04_evaluation.py
+      - src/cnnClassifier/pipeline/stage_05_evaluation.py
       - config/config.yaml
       - artifacts/data_ingestion/Chest-CT-Scan-data
       - artifacts/training/model.h5
@@ -53,5 +68,10 @@ stages:
       - IMAGE_SIZE
       - BATCH_SIZE
     metrics:
-    - scores.json:
-        cache: false
+      - scores.json:
+          cache: false
+      - artifacts/evaluation/classification_report.json:
+          cache: false
+    plots:
+      - artifacts/evaluation/confusion_matrix.png:
+          cache: false

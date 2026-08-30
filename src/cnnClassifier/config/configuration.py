@@ -4,6 +4,7 @@ from cnnClassifier.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from cnnClassifier.utils.common import read_yaml, create_directories
 from cnnClassifier.entity.config_entity import (
     DataIngestionConfig,
+    DataValidationConfig,
     PrepareBaseModelConfig,
     TrainingConfig,
     EvaluationConfig,
@@ -34,6 +35,22 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+
+    def get_data_validation_config(self) -> DataValidationConfig:
+        config = self.config.data_validation
+
+        create_directories([config.root_dir])
+
+        data_validation_config = DataValidationConfig(
+            root_dir=Path(config.root_dir),
+            data_dir=Path(self.config.data_ingestion.unzip_dir) / "Chest-CT-Scan-data",
+            status_file=Path(config.status_file),
+            report_file=Path(config.report_file),
+            allowed_extensions=(".jpg", ".jpeg", ".png"),
+            max_imbalance_ratio=self.params.MAX_IMBALANCE_RATIO
+        )
+
+        return data_validation_config
 
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
@@ -76,9 +93,13 @@ class ConfigurationManager:
         return training_config
 
     def get_evaluation_config(self) -> EvaluationConfig:
+        eval_output_dir = self.config.evaluation.root_dir
+        create_directories([eval_output_dir])
+
         eval_config = EvaluationConfig(
             path_of_model="artifacts/training/model.h5",
             training_data="artifacts/data_ingestion/Chest-CT-Scan-data",
+            eval_output_dir=Path(eval_output_dir),
             mlflow_uri="https://dagshub.com/biswajitdas542002/MLOPs-Production-Ready-Deep-Learning-Project.mlflow",
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,

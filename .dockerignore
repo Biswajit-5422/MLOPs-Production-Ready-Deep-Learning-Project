@@ -8,6 +8,8 @@ MLOps_Tool_Demo
 logs
 mlruns
 .vscode
+monitoring
+tests
 __pycache__
 *.pyc
 *.pyo

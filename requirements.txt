@@ -7,6 +7,8 @@ setuptools
 numpy
 matplotlib
 seaborn
+scikit-learn
+Pillow
 python-box==6.0.2
 pyYAML
 tqdm
@@ -14,7 +16,10 @@ ensure==1.0.2
 joblib
 types-PyYAML
 scipy
-Flask
-Flask-Cors
+fastapi
+uvicorn[standard]
+jinja2
+python-multipart
+prometheus-client
 dagshub
 -e .

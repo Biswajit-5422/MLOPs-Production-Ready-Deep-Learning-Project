@@ -28,7 +28,7 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Lint code
-        run: flake8 src tests
+        run: flake8 src tests app.py scripts
 
       - name: Run unit tests
         run: pytest -q
@@ -94,6 +94,16 @@ jobs:
           docker run -d -p 8080:8080 \
             --name cnncls \
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+
+      - name: Verify the container is healthy
+        run: |
+          for i in $(seq 1 10); do
+            if curl -sf http://localhost:8080/health; then exit 0; fi
+            sleep 3
+          done
+          echo "Container did not become healthy in time" >&2
+          docker logs cnncls
+          exit 1
 
       - name: Clean previous images and containers
         run: docker system prune -f
