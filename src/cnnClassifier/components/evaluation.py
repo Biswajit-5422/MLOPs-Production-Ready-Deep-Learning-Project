@@ -1,3 +1,4 @@
+import os
 import subprocess
 from pathlib import Path
 from urllib.parse import urlparse
@@ -9,6 +10,7 @@ import seaborn as sns
 import tensorflow as tf
 from sklearn.metrics import classification_report, confusion_matrix
 
+from cnnClassifier import logger
 from cnnClassifier.entity.config_entity import EvaluationConfig
 from cnnClassifier.utils.common import save_json
 
@@ -17,8 +19,21 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-import dagshub  # noqa: E402
-dagshub.init(repo_owner='biswajitdas542002', repo_name='MLOPs-Production-Ready-Deep-Learning-Project', mlflow=True)
+DAGSHUB_REPO_OWNER = "biswajitdas542002"
+DAGSHUB_REPO_NAME = "MLOPs-Production-Ready-Deep-Learning-Project"
+DAGSHUB_TOKEN_CACHE_DEFAULT = str(Path.home() / ".cache" / "dagshub" / "tokens")
+
+
+def _dagshub_credentials_available() -> bool:
+    """dagshub.init() falls back to an interactive browser OAuth flow when no
+    credentials are cached, which just hangs in any non-interactive context
+    (CI, a server, `dvc repro` on a fresh machine). Check first so evaluation
+    can log a clear warning and skip MLflow instead of hanging the pipeline.
+    """
+    if os.environ.get("DAGSHUB_USER_TOKEN"):
+        return True
+    cache_location = os.environ.get("DAGSHUB_CLIENT_TOKENS_CACHE", DAGSHUB_TOKEN_CACHE_DEFAULT)
+    return Path(cache_location).exists()
 
 
 class Evaluation:
@@ -123,6 +138,18 @@ class Evaluation:
         the git commit (code) and dvc.lock (data/model artifact hashes), so a run's
         metrics can always be reproduced with `git checkout <commit> && dvc repro`.
         """
+        if not _dagshub_credentials_available():
+            logger.warning(
+                "No DagsHub credentials found (DAGSHUB_USER_TOKEN env var or a cached token "
+                f"in {os.environ.get('DAGSHUB_CLIENT_TOKENS_CACHE', DAGSHUB_TOKEN_CACHE_DEFAULT)}) "
+                "- skipping MLflow logging. Metrics are still saved locally in scores.json and "
+                "artifacts/evaluation/. Set DAGSHUB_USER_TOKEN to enable remote tracking."
+            )
+            return
+
+        import dagshub
+        dagshub.init(repo_owner=DAGSHUB_REPO_OWNER, repo_name=DAGSHUB_REPO_NAME, mlflow=True)
+
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 

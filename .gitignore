@@ -3,6 +3,12 @@ __pycache__/
 *.py[codz]
 *$py.class
 artifacts/*
+# dvc.yaml marks these two as cache:false (i.e. git-tracked, not dvc-cached) -
+# same convention as scores.json, so they must not be blanket-ignored above.
+!artifacts/evaluation/
+artifacts/evaluation/*
+!artifacts/evaluation/confusion_matrix.png
+!artifacts/evaluation/classification_report.json
 
 # C extensions
 *.so
