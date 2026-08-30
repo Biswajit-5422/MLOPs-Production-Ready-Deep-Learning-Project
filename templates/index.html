@@ -1,234 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>cnncls</title>
-	<link rel="shortcut icon"
-        href="data:image/png;base64,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" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<style>
-		body{background-color: #eff2f9;}
-		.iupload h3{color: #1b2d6b;font-size: 30px;font-weight: 700;}
-		.img-part{height:300px;width:300px;margin:0px auto;}
-		.image-part{height:300px;width:300px;border:1px solid #1b2d6b;}
-		.image-part img{position:absolute;height: 300px;width:300px;display:none;padding:5px;}
-		.image-part #video{display:block;height: 300px;width:300px;padding:5px;}
-		.res-part{border:1px solid #dedede;margin-left:20px;height: 310px;width:100%;padding:5px;margin:0px auto;overflow:auto;}
-		.res-part2{border:1px solid #dedede;height: 310px;width:100%;padding:5px;margin:0px auto;}
-		.resp-img{height: 298px;width: 233px;margin:0px auto;}
-		.jsonRes{margin-left:30px;}
-		#send{cursor:pointer;}
-		.btn-part{width:325px;}
-		textarea,
-		select,
-		.form-control,
-		.custom-select,
-		button.btn,
-		.btn-primary,
-		input[type="text"],
-		input[type="url"],
-		.uneditable-input{
-			border: 1px solid #363e75;
-			outline: 0 !important;
-			border-radius:0px;
-			box-shadow: none;
-		   -webkit-box-shadow: none;
-		   -moz-box-shadow: none;
-		   -moz-transition: none;
-		   -webkit-transition: none;
-		}
-		textarea:focus,
-		select:focus,
-		.form-control:focus,
-		.btn:focus,
-		.btn-primary:focus,
-		.custom-select:focus,
-		input[type="text"]:focus,
-		.uneditable-input:focus{
-			border: 1px solid #007bff;
-			outline: 0 !important;
-			border-radius:0px;
-			box-shadow: none;
-		   -webkit-box-shadow: none;
-		   -moz-box-shadow: none;
-		   -moz-transition: none;
-		   -webkit-transition: none;
-		}
-		#loading {
-			position: fixed;
-			left: 0px;
-			top: 0px;
-			width: 100%;
-			height: 100%;
-			z-index: 9999999999;
-			overflow: hidden;
-			background: rgba(255, 255, 255, 0.7);
-		}
-		.loader {
-			border: 8px solid #f3f3f3;
-			border-top: 8px solid #363e75;
-			border-radius: 50%;
-			width: 60px;
-			height: 60px;
-			left: 50%;
-			margin-left: -4em;
-			display: block;
-			animation: spin 2s linear infinite;
-		}
-		.loader,
-		.loader:after {display: block;position: absolute;top: 50%;margin-top: -4.05em;}
-		@keyframes spin {
-			0% {
-				transform: rotate(0deg);
-			}
-			100% {
-				transform: rotate(360deg);
-			}
-		}
-		.right-part{border:1px solid #dedede;padding:5px;}
-		.logo{position:absolute;right:0px;bottom:0px;margin-right:30px;margin-bottom:30px;}
-	</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chest CT-Scan Cancer Classifier</title>
+<link rel="shortcut icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230b1220'/%3E%3Cpath d='M12 4a4 4 0 0 0-4 4v2a4 4 0 0 0 8 0V8a4 4 0 0 0-4-4Z' fill='none' stroke='%2338bdf8' stroke-width='1.8'/%3E%3Cpath d='M8 10a4 4 0 0 0-4 4 4 4 0 0 0 4 4' fill='none' stroke='%2338bdf8' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M16 10a4 4 0 0 1 4 4 4 4 0 0 1-4 4' fill='none' stroke='%23818cf8' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg-soft:#0f1a2e;
+    --panel:#131f36;
+    --panel-border:#22314f;
+    --text:#e7ecf7;
+    --text-dim:#93a1bf;
+    --accent:#38bdf8;
+    --accent-2:#818cf8;
+    --ok:#34d399;
+    --ok-bg:rgba(52,211,153,.12);
+    --warn:#f87171;
+    --warn-bg:rgba(248,113,113,.12);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1100px 500px at 12% -10%, rgba(56,189,248,.12), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(129,140,248,.10), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    min-height:100vh;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 64px;}
+
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:40px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .mark{
+    width:40px;height:40px;border-radius:11px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    box-shadow:0 6px 20px rgba(56,189,248,.35);
+  }
+  .brand .mark svg{width:22px;height:22px;}
+  .brand-text .name{font-weight:700;font-size:17px;letter-spacing:-.01em;}
+  .brand-text .tag{font-size:12.5px;color:var(--text-dim);}
+  .gh-link{
+    display:flex;align-items:center;gap:7px;color:var(--text-dim);text-decoration:none;
+    font-size:13.5px;font-weight:500;padding:8px 14px;border:1px solid var(--panel-border);
+    border-radius:999px;transition:.15s;background:var(--panel);
+  }
+  .gh-link:hover{color:var(--text);border-color:var(--accent);}
+  .gh-link svg{width:16px;height:16px;}
+
+  .hero{margin-bottom:32px;}
+  .hero h1{
+    font-size:clamp(28px,4vw,38px);line-height:1.15;margin:0 0 12px;
+    letter-spacing:-.02em;font-weight:800;
+  }
+  .hero h1 span{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--text-dim);font-size:15.5px;line-height:1.6;max-width:640px;margin:0 0 22px;}
+
+  .stats{display:flex;gap:10px;flex-wrap:wrap;}
+  .stat{
+    background:var(--panel);border:1px solid var(--panel-border);border-radius:12px;
+    padding:10px 16px;min-width:120px;
+  }
+  .stat .v{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;color:var(--accent);}
+  .stat .l{font-size:11.5px;color:var(--text-dim);margin-top:2px;text-transform:uppercase;letter-spacing:.04em;}
+
+  .grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;
+  }
+  @media(max-width:800px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);
+    padding:22px;
+  }
+  .card h2{margin:0 0 4px;font-size:15px;font-weight:700;}
+  .card .sub{color:var(--text-dim);font-size:13px;margin:0 0 16px;}
+
+  .dropzone{
+    border:1.5px dashed var(--panel-border);border-radius:12px;
+    min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:10px;cursor:pointer;transition:.15s;position:relative;overflow:hidden;padding:16px;
+    text-align:center;
+  }
+  .dropzone.drag{border-color:var(--accent);background:rgba(56,189,248,.06);}
+  .dropzone svg{width:34px;height:34px;color:var(--text-dim);}
+  .dropzone .dz-title{font-size:14px;font-weight:600;color:var(--text);}
+  .dropzone .dz-sub{font-size:12.5px;color:var(--text-dim);}
+  .dropzone img{
+    max-width:100%;max-height:280px;border-radius:8px;display:none;object-fit:contain;
+  }
+  .dropzone.has-image .dz-empty{display:none;}
+  .dropzone.has-image img{display:block;}
+
+  #fileinput{display:none;}
+
+  .actions{display:flex;gap:10px;margin-top:16px;}
+  button{
+    font-family:inherit;font-size:13.5px;font-weight:600;border-radius:10px;
+    border:1px solid transparent;padding:11px 18px;cursor:pointer;transition:.15s;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#08111f;flex:1;
+  }
+  .btn-primary:hover{filter:brightness(1.08);}
+  .btn-primary:disabled{opacity:.4;cursor:not-allowed;filter:none;}
+  .btn-ghost{background:transparent;border:1px solid var(--panel-border);color:var(--text-dim);}
+  .btn-ghost:hover{color:var(--text);border-color:var(--text-dim);}
+
+  .spinner{
+    width:15px;height:15px;border-radius:50%;
+    border:2px solid rgba(8,17,31,.35);border-top-color:#08111f;
+    animation:spin .7s linear infinite;display:none;
+  }
+  .btn-primary.loading .spinner{display:inline-block;}
+  .btn-primary.loading .btn-label{opacity:.85;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .result-empty{
+    height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:10px;color:var(--text-dim);text-align:center;
+  }
+  .result-empty svg{width:30px;height:30px;opacity:.55;}
+  .result-empty p{font-size:13px;margin:0;max-width:220px;}
+
+  .result-body{display:none;}
+  .result-body.show{display:block;}
+
+  .verdict{
+    display:flex;align-items:center;gap:12px;padding:16px;border-radius:12px;margin-bottom:16px;
+  }
+  .verdict.ok{background:var(--ok-bg);border:1px solid rgba(52,211,153,.35);}
+  .verdict.warn{background:var(--warn-bg);border:1px solid rgba(248,113,113,.35);}
+  .verdict .icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .verdict.ok .icon{background:rgba(52,211,153,.18);color:var(--ok);}
+  .verdict.warn .icon{background:rgba(248,113,113,.18);color:var(--warn);}
+  .verdict .icon svg{width:20px;height:20px;}
+  .verdict .label{font-size:16px;font-weight:700;}
+  .verdict.ok .label{color:var(--ok);}
+  .verdict.warn .label{color:var(--warn);}
+  .verdict .caption{font-size:12px;color:var(--text-dim);margin-top:2px;}
+
+  .confidence-row{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-dim);margin-bottom:6px;}
+  .confidence-row b{color:var(--text);font-family:'JetBrains Mono',monospace;}
+  .meter{height:8px;border-radius:999px;background:var(--bg-soft);overflow:hidden;margin-bottom:18px;}
+  .meter-fill{height:100%;border-radius:999px;width:0%;transition:width .6s cubic-bezier(.4,0,.2,1);}
+  .meter-fill.ok{background:linear-gradient(90deg,#34d399,#10b981);}
+  .meter-fill.warn{background:linear-gradient(90deg,#f87171,#ef4444);}
+
+  .disclaimer{
+    font-size:11.5px;color:var(--text-dim);line-height:1.5;padding:12px;
+    background:var(--bg-soft);border-radius:10px;border:1px solid var(--panel-border);
+  }
+
+  .error-banner{
+    display:none;background:var(--warn-bg);border:1px solid rgba(248,113,113,.35);color:#fca5a5;
+    padding:10px 14px;border-radius:10px;font-size:12.5px;margin-top:14px;
+  }
+  .error-banner.show{display:block;}
+
+  .pipeline{margin-top:36px;}
+  .pipeline h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-dim);margin:0 0 14px;font-weight:700;}
+  .pl-strip{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .pl-step{
+    background:var(--panel);border:1px solid var(--panel-border);border-radius:10px;
+    padding:9px 14px;font-size:12.5px;font-weight:600;color:var(--text-dim);white-space:nowrap;
+  }
+  .pl-arrow{color:var(--panel-border);font-size:14px;}
+
+  footer{margin-top:44px;padding-top:22px;border-top:1px solid var(--panel-border);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .stack{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{font-size:11.5px;color:var(--text-dim);border:1px solid var(--panel-border);border-radius:999px;padding:5px 11px;}
+  footer .meta{font-size:12px;color:var(--text-dim);}
+</style>
 </head>
 <body>
-    <div class="main container">
-		<section class="iupload">
-			<h3 class="text-center py-4">Object Classification</h3>
-			<div class="row">
-				<div class="img-part col-md-6">
-					<div class="image-part">
-						<video autoplay id="video" poster="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg?size=338&ext=jpg"></video>
-						<img src="" id="photo">
-						<canvas style="display:none;" id="canvas"></canvas>
-					</div>
-					<div class="btn-part">
-						<form id="upload-data pt-3" class="">
-							<div class="input-group mt-3 row">
-								<button type="button" class="btn btn-primary col-md-5 col-xs-5 ml-3 mr-4" id="uload">Upload</button>
-								<button id="send" type="button" class="btn btn-success col-md-5 col-xs-5">Predict</button>
-							</div>
+<div class="wrap">
 
+  <header class="top">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#08111f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"/><path d="M7 10a5 5 0 0 0-5 5 5 5 0 0 0 5 5"/><path d="M17 10a5 5 0 0 1 5 5 5 5 0 0 1-5 5"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="name">Chest CT-Scan Classifier</div>
+        <div class="tag">MLOps pipeline demo</div>
+      </div>
+    </div>
+    <a class="gh-link" href="https://github.com/Biswajit-5422/MLOPs-Production-Ready-Deep-Learning-Project" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      View source
+    </a>
+  </header>
 
+  <section class="hero">
+    <h1>Chest CT-Scan <span>Cancer Classification</span></h1>
+    <p>Upload a chest CT-scan slice and a fine-tuned VGG16 model — served through this Flask API — classifies it as <b>Normal</b> or <b>Adenocarcinoma Cancer</b>. Trained via a reproducible DVC pipeline with MLflow experiment tracking.</p>
+    <div class="stats">
+      <div class="stat"><div class="v">99.0%</div><div class="l">Val. accuracy</div></div>
+      <div class="stat"><div class="v">VGG16</div><div class="l">Transfer learning</div></div>
+      <div class="stat"><div class="v">2</div><div class="l">Classes</div></div>
+      <div class="stat"><div class="v">DVC</div><div class="l">Pipeline</div></div>
+    </div>
+  </section>
 
+  <div class="grid">
+    <div class="card">
+      <h2>Upload a scan</h2>
+      <p class="sub">JPG or PNG. Sent to <code>/predict</code> as a base64-encoded image.</p>
 
+      <div class="dropzone" id="dropzone">
+        <div class="dz-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <div class="dz-title">Drop an image, or click to browse</div>
+          <div class="dz-sub">A sample chest CT-scan works well for a demo</div>
+        </div>
+        <img id="preview" alt="Uploaded scan preview">
+      </div>
+      <input type="file" id="fileinput" accept="image/png, image/jpeg">
 
+      <div class="actions">
+        <button class="btn-primary" id="predictBtn" disabled>
+          <span class="spinner"></span>
+          <span class="btn-label">Run prediction</span>
+        </button>
+        <button class="btn-ghost" id="clearBtn">Clear</button>
+      </div>
+      <div class="error-banner" id="errorBanner"></div>
+    </div>
 
-							<!-- change url value  -->
+    <div class="card">
+      <h2>Prediction result</h2>
+      <p class="sub">Model output with confidence score.</p>
 
+      <div class="result-empty" id="resultEmpty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <p>Upload a scan and run a prediction to see the model's output here.</p>
+      </div>
 
+      <div class="result-body" id="resultBody">
+        <div class="verdict" id="verdict">
+          <div class="icon" id="verdictIcon"></div>
+          <div>
+            <div class="label" id="verdictLabel">—</div>
+            <div class="caption">Model prediction</div>
+          </div>
+        </div>
 
+        <div class="confidence-row"><span>Confidence</span><b id="confValue">0%</b></div>
+        <div class="meter"><div class="meter-fill" id="meterFill"></div></div>
 
-							<input type="hidden" class="form-control mr-2" id="url" placeholder="Enter REST Api url..." value="../predict"/>
-							<input name="upload" type="file" id="fileinput" style="position:absolute;top:-500px;"/><br/>
-						</form>
-					</div>
-				</div>
-				<div class="col-md-6 col-xs-12 right-part">
-					<h5 class="mb-2"><center>Prediction Results</center></h5>
-					<div class="row">
-						<div class="res-part2 col-md-5 col-xs-12"></div>
-						<div class="res-part col-md-5 col-xs-12"><div class="jsonRes"></div></div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
+        <div class="disclaimer">
+          Portfolio / research demo only — not a medical device and not intended for clinical or diagnostic use.
+        </div>
+      </div>
+    </div>
+  </div>
 
-	<img class="logo" src="" />
+  <div class="pipeline">
+    <h3>How this prediction got here</h3>
+    <div class="pl-strip">
+      <div class="pl-step">Data ingestion</div><span class="pl-arrow">→</span>
+      <div class="pl-step">VGG16 base model</div><span class="pl-arrow">→</span>
+      <div class="pl-step">Training (DVC)</div><span class="pl-arrow">→</span>
+      <div class="pl-step">Evaluation (MLflow)</div><span class="pl-arrow">→</span>
+      <div class="pl-step">This Flask API</div>
+    </div>
+  </div>
 
-
-<div id="loading"><div class="loader"></div></div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <footer>
+    <div class="stack">
+      <span class="chip">Flask</span>
+      <span class="chip">TensorFlow / Keras</span>
+      <span class="chip">DVC</span>
+      <span class="chip">MLflow · DagsHub</span>
+      <span class="chip">Docker</span>
+      <span class="chip">GitHub Actions</span>
+    </div>
+    <div class="meta">MLOps Pipeline for Chest CT-Scan Cancer Classification</div>
+  </footer>
+</div>
 
 <script>
-var mybtn = document.getElementById('startbtn');
-var myvideo = document.getElementById('video');
-var mycanvas = document.getElementById('canvas');
-var myphoto = document.getElementById('photo');
-var base_data = "";
+(function(){
+  const dropzone   = document.getElementById('dropzone');
+  const fileInput  = document.getElementById('fileinput');
+  const preview    = document.getElementById('preview');
+  const predictBtn = document.getElementById('predictBtn');
+  const clearBtn   = document.getElementById('clearBtn');
+  const errorBanner= document.getElementById('errorBanner');
 
-function sendRequest(base64Data){
-	var type = "json";
-	if(base64Data != "" || base64Data != null){
-		if(type == "imgtobase"){
-			$(".res-part").html("");
-			$(".res-part").html(base64Data);
-		}
-		else if(type == "basetoimg"){
-			var imageData = $("#imgstring").val();
-			$(".res-part").html("");
-			$(".res-part").append("<img src='data:image/jpeg;base64," + imageData + "' alt='' />");
-		}
-		else{
-			var url = $("#url").val();
-			$("#loading").show();
-			$.ajax({
-				url : url,
-				type: "post",
-				cache: false,
-				async: true,
-				crossDomain: true,
-				headers: {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin':'*'
-				},
-				data:JSON.stringify({image:base64Data}),
-				success: function(res){
-					$(".res-part").html("");
-					$(".res-part2").html("");
-					try{
-						var imageData = res[1].image;
-						if(imageData.length > 100){
-							if(imageData.length > 10){$(".res-part2").append("<img class='resp-img' src='data:image/jpeg;base64," + imageData + "' alt='' />");}
-						}
-					}catch(e){}
-					$(".res-part").html("<pre>" + JSON.stringify(res[0], undefined, 2) + "</pre>");
-					$("#loading").hide();
-				}
-			});
-		}
-	}
-}
+  const resultEmpty= document.getElementById('resultEmpty');
+  const resultBody = document.getElementById('resultBody');
+  const verdict     = document.getElementById('verdict');
+  const verdictIcon = document.getElementById('verdictIcon');
+  const verdictLabel= document.getElementById('verdictLabel');
+  const confValue    = document.getElementById('confValue');
+  const meterFill     = document.getElementById('meterFill');
 
-$(document).ready(function(){
-	$("#loading").hide();
+  const ICON_OK   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  const ICON_WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
 
-	$('#send').click(function(evt){
-		sendRequest(base_data);
-    });
+  let base64Data = "";
 
-    $('#uload').click(function(evt) {
-        $('#fileinput').focus().trigger('click');
-    });
-	$("#fileinput").change(function(){
-		if (this.files && this.files[0]){
-			var reader = new FileReader();
-			reader.onload = function (e){
-				var url = e.target.result;
-				var img = new Image();
-				img.crossOrigin = 'Anonymous';
-				img.onload = function(){
-					var canvas = document.createElement('CANVAS');
-					var ctx = canvas.getContext('2d');
-					canvas.height = this.height;
-					canvas.width = this.width;
-					ctx.drawImage(this, 0, 0);
-					base_data = canvas.toDataURL('image/jpeg', 1.0).replace(/^data:image.+;base64,/, '');
-					canvas = null;
-				};
-				img.src = url;
-				$('#photo').attr('src', url);
-				$('#photo').show();
-				$('#video').hide();
-			}
-			reader.readAsDataURL(this.files[0]);
-		}
-	});
-});
+  function showError(msg){
+    errorBanner.textContent = msg;
+    errorBanner.classList.add('show');
+  }
+  function clearError(){
+    errorBanner.classList.remove('show');
+    errorBanner.textContent = "";
+  }
 
+  function resetResult(){
+    resultBody.classList.remove('show');
+    resultEmpty.style.display = 'flex';
+  }
+
+  function handleFile(file){
+    clearError();
+    if (!file || !file.type.match('image/(png|jpeg|jpg)')) {
+      showError('Please choose a PNG or JPG image.');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const img = new Image();
+      img.onload = function(){
+        const canvas = document.createElement('canvas');
+        const maxDim = 800;
+        const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+        canvas.width = img.width * scale;
+        canvas.height = img.height * scale;
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        base64Data = canvas.toDataURL('image/jpeg', 0.92).replace(/^data:image\/\w+;base64,/, '');
+
+        preview.src = e.target.result;
+        dropzone.classList.add('has-image');
+        predictBtn.disabled = false;
+        resetResult();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', function(){
+    if (this.files && this.files[0]) handleFile(this.files[0]);
+  });
+
+  ['dragenter','dragover'].forEach(evt => dropzone.addEventListener(evt, e => {
+    e.preventDefault(); dropzone.classList.add('drag');
+  }));
+  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, e => {
+    e.preventDefault(); dropzone.classList.remove('drag');
+  }));
+  dropzone.addEventListener('drop', e => {
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
+  clearBtn.addEventListener('click', function(){
+    base64Data = "";
+    preview.src = "";
+    dropzone.classList.remove('has-image');
+    predictBtn.disabled = true;
+    fileInput.value = "";
+    clearError();
+    resetResult();
+  });
+
+  predictBtn.addEventListener('click', function(){
+    if (!base64Data) return;
+    clearError();
+    predictBtn.classList.add('loading');
+    predictBtn.disabled = true;
+
+    fetch('/predict', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64Data })
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Server returned ' + res.status);
+        return res.json();
+      })
+      .then(data => {
+        const out = Array.isArray(data) ? data[0] : data;
+        const label = out.label || out.image || 'Unknown';
+        const confidence = typeof out.confidence === 'number' ? out.confidence : null;
+        const isNormal = /normal/i.test(label);
+
+        verdict.className = 'verdict ' + (isNormal ? 'ok' : 'warn');
+        verdictIcon.innerHTML = isNormal ? ICON_OK : ICON_WARN;
+        verdictLabel.textContent = label;
+
+        meterFill.className = 'meter-fill ' + (isNormal ? 'ok' : 'warn');
+        if (confidence !== null) {
+          confValue.textContent = confidence.toFixed(1) + '%';
+          requestAnimationFrame(() => { meterFill.style.width = confidence + '%'; });
+        } else {
+          confValue.textContent = '—';
+          meterFill.style.width = '0%';
+        }
+
+        resultEmpty.style.display = 'none';
+        resultBody.classList.add('show');
+      })
+      .catch(err => {
+        showError('Prediction failed: ' + err.message);
+      })
+      .finally(() => {
+        predictBtn.classList.remove('loading');
+        predictBtn.disabled = false;
+      });
+  });
+})();
 </script>
 </body>
 </html>

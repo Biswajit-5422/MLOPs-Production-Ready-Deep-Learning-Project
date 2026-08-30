@@ -15,12 +15,13 @@ class PredictionPipeline:
         test_image = image.img_to_array(test_image)
         test_image = np.expand_dims(test_image, axis=0)
         test_image = test_image / 255.0
-        result = np.argmax(self.model.predict(test_image), axis=1)
-        print(result)
+        probabilities = self.model.predict(test_image)
+        result = np.argmax(probabilities, axis=1)
+        confidence = float(np.max(probabilities))
 
         if result[0] == 1:
             prediction = 'Normal'
-            return [{"image": prediction}]
         else:
             prediction = 'Adenocarcinoma Cancer'
-            return [{"image": prediction}]
+
+        return [{"label": prediction, "confidence": round(confidence * 100, 2)}]
